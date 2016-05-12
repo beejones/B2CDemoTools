@@ -3,7 +3,7 @@
 DeploymentMode="Development" UserJourneyRecorderEndpoint="https://www.identityblog.com/wp-content/plugins/cpimauth/journeyrecorder/endpoint.php?stream=a49b9d57-7e5b-4fde-a4ae-e7d8ff4c872e">
 	<BasePolicy>
 		<TenantId>b2ccharm.onmicrosoft.com</TenantId>
-		<PolicyId>base_extensions</PolicyId>
+		<PolicyId>b2c_1A_base_extensions</PolicyId>
 	</BasePolicy>
 
 	<RelyingParty>

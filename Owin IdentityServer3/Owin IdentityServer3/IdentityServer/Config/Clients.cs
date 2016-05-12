@@ -15,6 +15,26 @@ namespace IdentityServer.Config
              {
                 new Client
                 {
+                     ClientId = "https://op.certification.openid.net:60589/authz_cb",
+                     ClientName = "Openid connect certification",
+                     Flow = Flows.AuthorizationCode,
+                     AllowAccessToAllScopes = true,
+
+                    // redirect = URI of the MVC application callback
+                    RedirectUris = new List<string>
+                    {
+                        "https://op.certification.openid.net:60589/authz_cb"
+                    },           
+
+                    // client secret
+                    ClientSecrets = new List<Secret>()
+                    {
+                        new Secret("abcdef".Sha256())
+                    }
+                }
+                ,
+                new Client
+                {
                      ClientId = "https://login.microsoftonline.com/te/b2ccharm",
                      ClientName = "B2CCharm (Authorization Code)",
                      Flow = Flows.AuthorizationCode,

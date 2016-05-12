@@ -36,7 +36,7 @@ namespace B2CAppMvc.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>b2c_1_buymoreusers</string>
+  <string>B2C_1_wingtiptoyssignup</string>
   <string>B2C_1A_SignupWithRest</string>
   <string>B2C_1A_SignupWithRestAndIdp</string>
 </ArrayOfString>")]

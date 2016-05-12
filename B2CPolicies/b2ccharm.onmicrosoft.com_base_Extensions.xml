@@ -1,7 +1,8 @@
-﻿<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="b2ccharm.onmicrosoft.com" PolicyId="base_extensions" PublicPolicyUri="http://lamnahealth.onmicrosoft.com">
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="b2ccharm.onmicrosoft.com" PolicyId="B2C_1A_base_extensions" PublicPolicyUri="http://lamnahealth.onmicrosoft.com">
 	<BasePolicy>
 		<TenantId>b2ccharm.onmicrosoft.com</TenantId>
-		<PolicyId>base</PolicyId>
+		<PolicyId>B2C_1A_base</PolicyId>
 	</BasePolicy>
 
 	<BuildingBlocks>
@@ -23,11 +24,10 @@
         in this section, then it cannot be used in a technical policy.
     -->
 	<ClaimsProviders>
-
 		<ClaimsProvider>
-			<DisplayName>Buy Now Rest</DisplayName>
+			<DisplayName>Loyalty Rest Api</DisplayName>
 			<TechnicalProfiles>
-				<TechnicalProfile Id="BuyNowRest">
+				<TechnicalProfile Id="LoyaltyRest">
 					<DisplayName>Restful Claims Provider</DisplayName>
 					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
 					<!--<InputTokenFormat>JWT</InputTokenFormat>-->
@@ -47,26 +47,6 @@
 					<OutputClaims>
 						<OutputClaim ClaimTypeReferenceId="UserId" />
 						<OutputClaim ClaimTypeReferenceId="Loyalty" PartnerClaimType="LoyaltyNumber" />						
-					</OutputClaims>
-				</TechnicalProfile>
-				<TechnicalProfile Id="BuyNowRestLocal">
-					<DisplayName>Restful Claims Provider</DisplayName>
-					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-					<!--<InputTokenFormat>JWT</InputTokenFormat>-->
-					<Metadata>
-						<Item Key="userinfo_endpoint">http://localhost:33738/api/loyalty</Item>
-						<Item Key="AuthenticationType">None</Item>
-						<Item Key="SendClaimsIn">QueryString</Item>
-						<Item Key="issuer">https://te.cpim.localhost.net/{tenant}/{policy}/</Item>
-					</Metadata>
-					<CryptographicKeys>
-						<Key Id="client_secret" StorageReferenceId="B2cRestClientSecret" />
-					</CryptographicKeys>
-					<InputClaims>
-						<InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="userid" />
-					</InputClaims>
-					<OutputClaims>
-						<OutputClaim ClaimTypeReferenceId="UserId" />
 					</OutputClaims>
 				</TechnicalProfile>
 			</TechnicalProfiles>
@@ -209,7 +189,7 @@
 				<!-- Do Rest call -->
 				<OrchestrationStep Order="7" Type="ClaimsExchange">
 					<ClaimsExchanges>
-						<ClaimsExchange Id="BuyMoreRestExchange" TechnicalProfileReferenceId="BuyNowRest" />
+						<ClaimsExchange Id="BuyMoreRestExchange" TechnicalProfileReferenceId="LoyaltyRest" />
 					</ClaimsExchanges>
 				</OrchestrationStep>
 
@@ -320,7 +300,7 @@
 						</Precondition>
 					</Preconditions>
 					<ClaimsExchanges>
-						<ClaimsExchange Id="BuyMoreRestExchange" TechnicalProfileReferenceId="BuyNowRest" />
+						<ClaimsExchange Id="BuyMoreRestExchange" TechnicalProfileReferenceId="LoyaltyRest" />
 					</ClaimsExchanges>
 				</OrchestrationStep>
 

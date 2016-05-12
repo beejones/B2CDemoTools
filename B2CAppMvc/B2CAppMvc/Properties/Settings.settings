@@ -8,7 +8,7 @@
     <Setting Name="B2CPolicy" Type="System.Collections.Specialized.StringCollection" Scope="Application">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;b2c_1_buymoreusers&lt;/string&gt;
+  &lt;string&gt;B2C_1_wingtiptoyssignup&lt;/string&gt;
   &lt;string&gt;B2C_1A_SignupWithRest&lt;/string&gt;
   &lt;string&gt;B2C_1A_SignupWithRestAndIdp&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
