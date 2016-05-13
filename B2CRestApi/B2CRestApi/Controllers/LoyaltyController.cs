@@ -12,7 +12,6 @@ using Newtonsoft.Json.Linq;
 
 namespace B2CRestApi.Controllers
 {
-    //[BasicAuthenticationFilter]
     public class LoyaltyController : ApiController
     {
 
@@ -53,6 +52,7 @@ namespace B2CRestApi.Controllers
         }
 
         // Put a user object
+        [Authorize]
         public HttpResponseMessage Post([FromBody]JObject jsonUserId)
         {
             // Get userid

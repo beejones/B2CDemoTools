@@ -205,30 +205,34 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Basic Authentication\BasicAuthenticationExtensions.cs" />
+    <Compile Include="Basic Authentication\BasicAuthenticationHandler.cs" />
+    <Compile Include="Basic Authentication\BasicAuthenticationMiddleware.cs" />
+    <Compile Include="Basic Authentication\BasicAuthenticationOptions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoyaltyController.cs" />
+    <Compile Include="Controllers\LoyaltyModelsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\BasicAuthenticationFilter.cs" />
     <Compile Include="Filters\BasicAuthenticationIdentity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201604281254188_InitialCreate.cs" />
-    <Compile Include="Migrations\201604281254188_InitialCreate.Designer.cs">
-      <DependentUpon>201604281254188_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContextManager.cs" />
-    <Compile Include="Models\EidModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\EidDbContext.cs" />
     <Compile Include="Models\LoyaltyDbContext.cs" />
     <Compile Include="Models\DbContextBase.cs" />
     <Compile Include="Models\LoyaltyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
@@ -261,7 +265,11 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Properties\PublishProfiles\B2CAuthApi.pubxml" />
+    <None Include="Properties\PublishProfiles\B2CAuthApi %282%29.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -290,6 +298,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\LoyaltyModels\Create.cshtml" />
+    <Content Include="Views\LoyaltyModels\Delete.cshtml" />
+    <Content Include="Views\LoyaltyModels\Details.cshtml" />
+    <Content Include="Views\LoyaltyModels\Edit.cshtml" />
+    <Content Include="Views\LoyaltyModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -301,11 +314,6 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604281254188_InitialCreate.resx">
-      <DependentUpon>201604281254188_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

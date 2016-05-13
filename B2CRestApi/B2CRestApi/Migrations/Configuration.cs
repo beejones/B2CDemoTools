@@ -5,15 +5,14 @@ namespace B2CRestApi.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<B2CRestApi.Data.LoyaltyDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<B2CRestApi.Models.DbContextBase>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "B2CRestApi.Data.LoyaltyDbContext";
         }
 
-        protected override void Seed(B2CRestApi.Data.LoyaltyDbContext context)
+        protected override void Seed(B2CRestApi.Models.DbContextBase context)
         {
             //  This method will be called after migrating to the latest version.
 

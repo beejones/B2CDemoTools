@@ -96,8 +96,14 @@ namespace B2CAppMvc
                     },
                     SecurityTokenValidated = (context) =>
                     {
+                        Console.WriteLine("B2C returned JWT : '{0}'", context.ProtocolMessage.IdToken);
                         return Task.FromResult(0);
                     },
+                    AuthenticationFailed = (context) =>
+                    {
+                        Console.WriteLine("B2C returned error code : '{0}'", context.ProtocolMessage.ErrorDescription);
+                        return Task.FromResult(0);
+                    }
                 },
                 TokenValidationParameters = new TokenValidationParameters
                 {

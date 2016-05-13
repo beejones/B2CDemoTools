@@ -12,10 +12,5 @@ namespace B2CRestApi.Models
         /// Gets or sets the loyalty database
         /// </summary>
         public DbSet<LoyaltyModel> Users { get; set; }
-
-        /// <summary>
-        /// Gets or sets the national id database
-        /// </summary>
-        public DbSet<EidModel> Citizens { get; set; }
     }
 }
