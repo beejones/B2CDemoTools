@@ -1,4 +1,5 @@
-﻿using B2CRestApi.Models;
+﻿using B2CRestApi.Basic_Authentication;
+using B2CRestApi.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -18,34 +19,10 @@ namespace B2CRestApi
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
-            app.UseBasicAuthentication("realm", ValidateClient);
+            // Remove the default cookie based authentication and replace it by our custom middleware
+            // We don't need user authentication but just client authentication
+            app.Use<ClientAuthMiddleware>();
 
-            // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
-            // Enable the application to use a cookie to store information for the signed in user
-            // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            app.UseCookieAuthentication(new CookieAuthenticationOptions());
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-            
-        }
-
-        private Task<IEnumerable<Claim>> ValidateClient(string clientId, string clientSecret)
-        {
-            if (string.Compare(clientId, Properties.Settings.Default.ClientId) == 0 &&
-                string.Compare(clientSecret, Properties.Settings.Default.ClientSecret) == 0)
-            {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.NameIdentifier, clientId),
-                    new Claim(ClaimTypes.Role, "client")
-                };
-
-                return Task.FromResult<IEnumerable<Claim>>(claims);
-            }
-
-            return Task.FromResult<IEnumerable<Claim>>(null);
         }
     }
 }
