@@ -10,6 +10,10 @@ namespace IdentityServer.Config
 {
     public static class Scopes
     {
+        private const string DisplayName = "displayName";
+        private const string ObjectId = "objectId";
+
+
         public static IEnumerable<Scope> Get()
         {
             return new List<Scope>
@@ -28,6 +32,7 @@ namespace IdentityServer.Config
                             new ScopeClaim(Constants.ClaimTypes.FamilyName),
                             new ScopeClaim(Constants.ClaimTypes.Name),
                             new ScopeClaim(Constants.ClaimTypes.Id),
+                            new ScopeClaim(ObjectId),
                             new ScopeClaim(Constants.ClaimTypes.IdentityProvider),
                             new ScopeClaim(Constants.ClaimTypes.Email)
                         },
