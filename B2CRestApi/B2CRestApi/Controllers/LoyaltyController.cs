@@ -12,47 +12,14 @@ using Newtonsoft.Json.Linq;
 
 namespace B2CRestApi.Controllers
 {
-    //[BasicAuthenticationFilter]
     public class LoyaltyController : ApiController
     {
-
-        // GET all objects
-        public HttpResponseMessage Get()
-        {
-            try
-            {
-                using (var context = ContextManager.CreateContext())
-                {
-                    var users = context.Users.Select(row => row);
-                    if (users.Count() != 0)
-                    {
-                        return Request.CreateResponse(HttpStatusCode.OK, users.ToList());
-                    }
-                    return Request.CreateResponse(HttpStatusCode.OK, new { });
-                }
-            }
-            catch(Exception e)
-            {
-                Debug.WriteLine(e);
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
-            }
-        }
-
-        // GET a user objects
-        public HttpResponseMessage Get(string userId)
-        {
-            using (var context = ContextManager.CreateContext())
-            {
-                var user = context.Users.Where(row => string.Compare(row.UserId, userId, true) == 0).FirstOrDefault();
-                if (user != null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, user);
-                }
-                return Request.CreateResponse(HttpStatusCode.OK, new { });
-            }
-        }
-
-        // Put a user object
+        /// <summary>
+        /// Store a user object and create the loyalty number if not existent
+        /// </summary>
+        /// <param name="jsonUserId">Json structure containing userid</param>
+        /// <returns>Response message</returns>
+        [Authorize(Roles = "client")]
         public HttpResponseMessage Post([FromBody]JObject jsonUserId)
         {
             // Get userid
@@ -89,6 +56,11 @@ namespace B2CRestApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Convert object id into loyalty number
+        /// </summary>
+        /// <param name="id">User id</param>
+        /// <returns></returns>
         private string LoyaltyNumber(string id)
         {
             int len = id.Length;
