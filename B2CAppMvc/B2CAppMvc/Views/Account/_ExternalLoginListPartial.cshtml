@@ -1,0 +1,20 @@
+﻿@model B2CAppMvc.Models.Account.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+@{
+    var externalAuthenticationTypes = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @foreach (var externalAuthenticationType in externalAuthenticationTypes.Where(at => !at.Caption.StartsWith("(Hidden)")))
+            {
+                <div class="col-lg-4">
+                    <h2>@externalAuthenticationType.AuthenticationType</h2>
+                    <p>@externalAuthenticationType.Caption<p>
+                        <button class="btn btn-primary" name="authenticationType" type="submit" value="@externalAuthenticationType.AuthenticationType">Log in &raquo;</button>
+                    </p>
+                </div>
+            }
+        </div>
+    }
+}

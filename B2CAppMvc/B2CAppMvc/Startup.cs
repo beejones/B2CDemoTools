@@ -1,14 +1,12 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(B2CAppMvc.Startup))]
 namespace B2CAppMvc
 {
     public partial class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void Configuration(IAppBuilder appBuilder)
         {
-            ConfigureAuth(app);
+            ConfigureAuthentication(appBuilder);
         }
     }
 }

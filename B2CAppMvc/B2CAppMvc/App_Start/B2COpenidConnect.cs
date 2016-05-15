@@ -1,18 +1,15 @@
-﻿using B2CAppMvc.Models;
-using Microsoft.Owin.Security.OpenIdConnect;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IdentityModel.Tokens;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
+using B2CAppMvc.Models;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.OpenIdConnect;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace B2CAppMvc
 {
@@ -62,7 +59,26 @@ namespace B2CAppMvc
             {
                 Notifications = new OpenIdConnectAuthenticationNotifications()
                 {
-                    RedirectToIdentityProvider = async (context) =>
+                    AuthenticationFailed = context =>
+                    {
+                        context.HandleResponse();
+
+                        if (context.ProtocolMessage.Error == "access_denied" && context.ProtocolMessage.ErrorDescription.StartsWith("AADB2C90118"))
+                        {
+                            context.Response.Redirect("/Account/ResetPassword");
+                        }
+                        else if (context.ProtocolMessage.Error == "access_denied" && context.ProtocolMessage.ErrorDescription.StartsWith("AADB2C90091"))
+                        {
+                            context.Response.Redirect("/Home/Index");
+                        }
+                        else
+                        {
+                            context.Response.Redirect("/Error/Index?error=" + context.ProtocolMessage.Error + "&error_description=" + context.ProtocolMessage.ErrorDescription);
+                        }
+
+                        return Task.FromResult(0);
+                    },
+                    RedirectToIdentityProvider = async context =>
                     {
                         // The open id class can't deal with authorization uri which already contain '?'
                         // We need this work around to cover it in the request
@@ -94,10 +110,10 @@ namespace B2CAppMvc
                         await Task.FromResult(0);
                         
                     },
-                    SecurityTokenValidated = (context) =>
+                    SecurityTokenValidated = context =>
                     {
                         return Task.FromResult(0);
-                    },
+                    }
                 },
                 TokenValidationParameters = new TokenValidationParameters
                 {
@@ -105,7 +121,7 @@ namespace B2CAppMvc
                 },
                 UseTokenLifetime = true,
                 Caption = caption,
-                AuthenticationType = caption,
+                AuthenticationType = policy,
                 Scope = "openid",
                 ResponseType = "id_token",
                 ClientId = clientId,

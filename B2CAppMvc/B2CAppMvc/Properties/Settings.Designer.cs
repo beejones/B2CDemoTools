@@ -13,7 +13,7 @@ namespace B2CAppMvc.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -36,7 +36,9 @@ namespace B2CAppMvc.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>b2c_1_buymoreusers</string>
+  <string>B2C_1_wingtiptoyssignup</string>
+  <string>B2C_1_PasswordReset</string>
+  <string>B2C_1_ProfileEditing</string>
   <string>B2C_1A_SignupWithRest</string>
   <string>B2C_1A_SignupWithRestAndIdp</string>
 </ArrayOfString>")]
@@ -96,9 +98,11 @@ namespace B2CAppMvc.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>User logon with B2C ({0})</string>
-  <string>User login with B2C and REST call ({0})</string>
-  <string>User login with B2C, IdentityServer and REST  ({0})</string>
+  <string>A basic sign-up or sign-in policy for local, Facebook, Google, and Microsoft accounts</string>
+  <string>(Hidden) A basic password reset policy for a local account</string>
+  <string>(Hidden) A basic profile editing policy for local, Facebook, Google, and Microsoft accounts</string>
+  <string>An advanced sign-up or sign-in policy that integrates with a REST API</string>
+  <string>An advanced sign-up or sign-in policy that integrates with a custom identity provider</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection Caption {
             get {
