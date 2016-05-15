@@ -21,13 +21,12 @@ body {
   text-align: left;
 }
 
-@media(max-width:480px){
+@media(max-width:480px) {
   body {
     background-image: none;
     background-color: #f2f2f2;
   }
-}
-@media(max-width:480px){
+
   .divider h2 {    
     margin: 10px 0 !important;
   }

@@ -13,6 +13,7 @@ using Microsoft.Owin.Security.Google;
 using IdentityServer.Properties;
 using IdentityServer3.Core;
 using System.Security.Claims;
+using IdentityServer3.Core.Services.Default;
 using Thinktecture.IdentityModel.Client;
 using Microsoft.Owin.Security;
 
@@ -29,6 +30,11 @@ namespace IdentityServer
                                 .UseInMemoryScopes(Scopes.Get())
                                 .UseInMemoryUsers(Users.Get());
 
+                var viewServiceOptions = new DefaultViewServiceOptions();
+                viewServiceOptions.CacheViews = false;
+                viewServiceOptions.Stylesheets.Add("/Styles/site.css");
+                idServerServiceFactory.ConfigureDefaultViewService(viewServiceOptions);
+
                 var options = new IdentityServerOptions
                 {
                     Factory = idServerServiceFactory,
@@ -39,8 +45,8 @@ namespace IdentityServer
                     RequireSsl = false,
                     AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
                     {
-                        IdentityProviders = ConfigureIdentityProviders,
-                    },                     
+                        IdentityProviders = ConfigureIdentityProviders
+                    }
                 };
 
                 idsrvApp.UseIdentityServer(options);
