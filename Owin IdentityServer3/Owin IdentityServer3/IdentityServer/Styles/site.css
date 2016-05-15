@@ -36,6 +36,10 @@ body {
   color: #fff;
 }
 
+.brand-logo {
+  height: 70px;
+}
+
 .image-center {
   display: block;
   margin-left: auto;
@@ -48,7 +52,7 @@ body {
   margin-top: 30px;
 }
 
-.login-logo {
+.logo {
   height: 140px;
   margin-top: -90px;
 }
@@ -66,6 +70,7 @@ body {
     display: none;
 }
 
+.page-index,
 .page-login {
   padding-top: 80px;
 }

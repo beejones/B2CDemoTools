@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="images\background.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\wingtip-toys-logo.png" />
     <Content Include="images\wingtipcorp.png" />
     <Content Include="Styles\site.css" />
     <Content Include="packages.config">
@@ -127,6 +128,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html" />
     <Content Include="templates\_login.html" />
     <Content Include="Web.config" />
   </ItemGroup>
