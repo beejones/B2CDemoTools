@@ -9,11 +9,54 @@ using System.Diagnostics;
 using B2CRestApi.Filters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.Owin;
 
 namespace B2CRestApi.Controllers
 {
     public class LoyaltyController : ApiController
     {
+        /// <summary>
+        /// Retrieve a user object
+        /// </summary>
+        /// <param name="userId">userid of object to find</param>
+        /// <returns>Response message</returns>
+        [Authorize(Roles = "client")]
+        public HttpResponseMessage Get()
+        {
+            string userId = string.Empty;
+
+            // Try to get userid from header
+            var header = Request.Headers.Where(h => string.Compare(h.Key, "UserId", true) == 0).FirstOrDefault();
+            if (!string.IsNullOrWhiteSpace(header.Key))
+            {
+                userId = header.Value.FirstOrDefault();
+            }
+
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                using (var context = ContextManager.CreateContext())
+                {
+                    var user = context.Users.Where(row => string.Compare(row.UserId, userId, true) == 0).FirstOrDefault();
+                    if (user != null)
+                    {
+                        user = new LoyaltyModel
+                        {
+                            UserId = userId,
+                            LoyaltyNumber = user.LoyaltyNumber
+                        };
+                        return Request.CreateResponse(HttpStatusCode.OK, user);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotFound);
+                    }
+                }
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+
         /// <summary>
         /// Store a user object and create the loyalty number if not existent
         /// </summary>
