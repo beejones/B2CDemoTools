@@ -214,6 +214,7 @@
     <Content Include="images\recore.png" />
     <Content Include="images\scalebound.png" />
     <Content Include="images\second-slide.jpg" />
+    <Content Include="images\silhouette-picture.png" />
     <Content Include="images\the-long-dark-game-preview.png" />
     <Content Include="images\the-solas-project-game-preview.png" />
     <Content Include="images\third-slide.jpg" />
