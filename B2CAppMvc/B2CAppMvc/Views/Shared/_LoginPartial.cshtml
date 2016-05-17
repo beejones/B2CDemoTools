@@ -11,7 +11,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown hidden-xs">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-user"></span>
+                <img alt="Picture" class="login-dropdown-toggle-picture" src="@User.Identity.GetPictureUrl()" />
                 @if (!string.IsNullOrEmpty(User.Identity.GetGamerTag()))
                 {
                     <span>@@@User.Identity.GetGamerTag()</span>
@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <p class="text-center">
-                                    <span class="glyphicon glyphicon-user login-picture"></span>
+                                    <img alt="Picture" class="login-dropdown-menu-picture" src="@User.Identity.GetPictureUrl()" />
                                 </p>
                             </div>
                             <div class="col-lg-8">

@@ -18,8 +18,12 @@
     margin-bottom: 0;
 }
 
-.login-picture {
-    font-size: 87px;
+.login-dropdown-menu-picture {
+    width: 87px;
+}
+
+.login-dropdown-toggle-picture {
+    height: 18px;
 }
 
 .marketing.new-release-games h2 {

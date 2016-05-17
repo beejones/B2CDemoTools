@@ -29,6 +29,12 @@
                     <li>
                         <a href="@Url.Action("Index", "Claims")">Claims</a>
                     </li>
+                    @if (User.Identity.IsEmployee())
+                    {
+                        <li>
+                            <a href="#">Administration</a>
+                        </li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
