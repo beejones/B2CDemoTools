@@ -4,16 +4,6 @@
     <TenantId>b2ccharm.onmicrosoft.com</TenantId>
     <PolicyId>b2c_1A_base_extensions</PolicyId>
   </BasePolicy>
-  <BuildingBlocks>
-    <ContentDefinitions>
-      <ContentDefinition Id="api.signuporsignin">
-        <LoadUri>https://b2cauthstore.blob.core.windows.net/b2cdemotools/wingtiptoys/unified.html</LoadUri>
-      </ContentDefinition>
-      <ContentDefinition Id="api.localaccountsignup">
-        <LoadUri>https://b2cauthstore.blob.core.windows.net/b2cdemotools/wingtiptoys/selfasserted.html</LoadUri>
-      </ContentDefinition>
-    </ContentDefinitions>
-  </BuildingBlocks>
   <UserJourneys>
     <UserJourney Id="SignUpOrSignInWithRest">
 	<!-- Do conditional Rest call -->
