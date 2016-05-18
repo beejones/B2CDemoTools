@@ -3,6 +3,15 @@
     padding-bottom: 40px;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #333333;
+}
+
 .carousel {
     margin-bottom: 20px;
     margin-top: 55px;
@@ -11,6 +20,51 @@
 .carousel-caption {
     z-index: 10;
 }
+
+.login body {
+    background-attachment: fixed;
+    background-image: url("../images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login h5 {
+    margin-bottom: 20px;
+}
+
+.login .image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.login .login-container {
+    padding-top: 80px;
+}
+
+.login .logo {
+    height: 140px;
+    margin-top: -90px;
+}
+
+.login .marketing .row {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+    .login .marketing .row h4 {
+        margin-top: 20px;
+    }
+
+    .login .marketing .row:nth-last-child(1) {
+        border-bottom: 0;
+    }
+
+    .login .marketing .row p:nth-last-child(1) {
+        margin-bottom: 20px;
+    }
 
 .login-emails,
 .login-gamer-zone,
@@ -109,6 +163,13 @@
         white-space: nowrap;
     }
 
+@media (max-width: 480px) {
+    .login body {
+        background-image: none;
+        background-color: #f2f2f2;
+    }
+}
+
 @media (min-width: 768px) {
     .carousel-caption p {
         font-size: 21px;
@@ -125,7 +186,4 @@
             padding-bottom: 8px;
             padding-top: 8px;
         }
-}
-
-@media (min-width: 992px) {
 }

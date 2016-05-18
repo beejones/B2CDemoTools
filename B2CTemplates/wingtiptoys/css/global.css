@@ -58,6 +58,19 @@ label,
   margin-top: 10px;
 }
 
+#AdfsExchange {
+  background-color: #28B1E6;
+  background-image: url("../images/activedirectory.png");
+  background-repeat: no-repeat;
+  background-size: 50px;
+  margin: 10px 0;
+  padding-left: 55px;
+}
+
+#AdfsExchange:hover {
+  background-color: #189DCF;
+}
+
 #api ul {
   list-style-type: none;
   padding-left: 0;
@@ -89,12 +102,12 @@ label,
   margin-bottom: 10px 0;
 }
 
-#FacebookExchange{
+#FacebookExchange {
   background-color: #3B5595;
   background-image: url("../images/facebook.png");
   background-repeat: no-repeat;
   background-size: 50px;
-  padding-left: 10px;
+  padding-left: 55px;
 }
 
 #FacebookExchange:hover {
@@ -119,7 +132,7 @@ label,
   background-repeat: no-repeat;
   background-size: 50px;
   margin: 10px 0;
-  padding-left: 10px;
+  padding-left: 55px;
 }
 
 #GoogleExchange:hover {
@@ -131,8 +144,8 @@ label,
   background-image: url("../images/wingtipcorp.png");
   background-repeat: no-repeat;
   background-size: 50px;
-  margin: 10px 0;
-  padding-left: 10px;
+  margin-top: 10px;
+  padding-left: 55px;
 }
 
 #IdentifyServerExchange:hover {
@@ -172,7 +185,7 @@ label,
   background-image: url("../images/microsoft.png");
   background-repeat: no-repeat;
   background-size: 50px;
-  padding-left: 10px;
+  padding-left: 55px;
 }
 
 #MicrosoftAccountExchange:hover {
@@ -186,7 +199,7 @@ label,
   background-size: 50px;
   color: #fff;
   margin-top: 10px;
-  padding-left: 10px;
+  padding-left: 55px;
 }
 
 #SignUpWithLogonEmailExchange:hover{
@@ -198,8 +211,8 @@ label,
   border-radius: 2px;
   color: whitesmoke;
   font-size: larger;
-  height: 46px;
-  width: 240px;
+  height: 45px;
+  width: 284px;
 }
 
 .accountButton:hover {
