@@ -18,6 +18,7 @@ DeploymentMode="Development" UserJourneyRecorderEndpoint="http://b2crecorder.azu
         <OutputClaim ClaimTypeReferenceId="sub" />
         <OutputClaim ClaimTypeReferenceId="identityProvider" />
         <OutputClaim ClaimTypeReferenceId="Loyalty" />
+		<OutputClaim ClaimTypeReferenceId="extension_picture" />
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>
