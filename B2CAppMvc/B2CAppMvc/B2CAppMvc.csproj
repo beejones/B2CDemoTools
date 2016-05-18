@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\ark-survival-evolved-game-preview.png" />
+    <Content Include="images\background.jpg" />
     <Content Include="images\deus-ex-mankind-divided.png" />
     <Content Include="images\dovetail-games-euro-fishing.png" />
     <Content Include="images\first-slide.jpg" />
