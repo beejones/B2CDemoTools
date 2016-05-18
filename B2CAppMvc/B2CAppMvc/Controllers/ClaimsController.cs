@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace B2CAppMvc.Controllers
 {
+    [Authorize]
     public class ClaimsController : Controller
     {
         public ActionResult Index()

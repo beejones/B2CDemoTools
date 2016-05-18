@@ -5,18 +5,11 @@
 }
 <div class="jumbotron">
     <div class="container">
-        @if (User.Identity.IsAuthenticated)
-        {
-            <h1>You are logged in</h1>
-            <p>@string.Format("This page lists the token claims that were issued for policy '{0}' from tenant '{1}'.", User.Identity.GetAuthenticationClassReference(), Settings.Default.B2CTenant)</p>
-            <p>
-                <a class="btn btn-primary btn-lg" href="https://azure.microsoft.com/en-us/documentation/articles/active-directory-b2c-reference-tokens/" role="button" target="_blank">Learn more &raquo;</a>
-            </p>
-        }
-        else
-        {
-            <h1>You are logged out</h1>
-        }
+        <h1>Claims</h1>
+        <p>@string.Format("This page lists the token claims that were issued for policy '{0}' from tenant '{1}'.", User.Identity.GetAuthenticationClassReference(), Settings.Default.B2CTenant)</p>
+        <p>
+            <a class="btn btn-primary btn-lg" href="https://azure.microsoft.com/en-us/documentation/articles/active-directory-b2c-reference-tokens/" role="button" target="_blank">Learn more &raquo;</a>
+        </p>
     </div>
 </div>
 @if (User.Identity.IsAuthenticated)
