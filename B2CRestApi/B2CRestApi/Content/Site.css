@@ -1,17 +1,49 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    color: #5a5a5a;
+    padding-bottom: 40px;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #333333;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.home body {
+    background-attachment: fixed;
+    background-image: url("../images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home h5 {
+    margin-bottom: 20px;
+}
+
+.home .image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.home .home-container {
+    padding-top: 80px;
+}
+
+.home .logo {
+    height: 140px;
+    margin-top: -90px;
+}
+
+@media (max-width: 480px) {
+    .login body {
+        background-image: none;
+        background-color: #f2f2f2;
+    }
 }
