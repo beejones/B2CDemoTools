@@ -1,8 +1,22 @@
-﻿<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="B2ccharm.onmicrosoft.com" PolicyId="B2C_1A_SignupWithRest" PublicPolicyUri="http://B2ccharm.onmicrosoft.com/" DeploymentMode="Development" UserJourneyRecorderEndpoint="https://www.identityblog.com/wp-content/plugins/cpimauth/journeyrecorder/endpoint.php?stream=a49b9d57-7e5b-4fde-a4ae-e7d8ff4c872e">
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="B2ccharm.onmicrosoft.com" PolicyId="B2C_1A_SignupWithRestHeader" PublicPolicyUri="http://B2ccharm.onmicrosoft.com/" 
+ DeploymentMode="Development" UserJourneyRecorderEndpoint="https://www.identityblog.com/wp-content/plugins/cpimauth/journeyrecorder/endpoint.php?stream=a49b9d57-7e5b-4fde-a4ae-e7d8ff4c872d">
   <BasePolicy>
     <TenantId>b2ccharm.onmicrosoft.com</TenantId>
     <PolicyId>b2c_1A_base_extensions</PolicyId>
   </BasePolicy>
+  <UserJourneys>
+    <UserJourney Id="SignUpOrSignInWithRest">
+	<!-- Do conditional Rest call -->
+	 <OrchestrationSteps> 
+        <OrchestrationStep Order="10" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="LoyaltyRestExchange" TechnicalProfileReferenceId="LoyaltyRest-Header" />
+          </ClaimsExchanges>
+		 </OrchestrationStep> 
+	 </OrchestrationSteps> 
+    </UserJourney>
+  </UserJourneys>
+
   <RelyingParty>
     <DefaultUserJourney ReferenceId="SignUpOrSignInWithRest" />
     <TechnicalProfile Id="PolicyProfile">
