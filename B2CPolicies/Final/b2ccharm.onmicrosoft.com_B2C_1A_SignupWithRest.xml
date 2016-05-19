@@ -1,5 +1,5 @@
 <TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="B2ccharm.onmicrosoft.com" PolicyId="B2C_1A_SignupWithRest" PublicPolicyUri="http://B2ccharm.onmicrosoft.com/" 
-DeploymentMode="Development" UserJourneyRecorderEndpoint="https://b2crecorder.azurewebsites.net/stream?id=a49b9d57-7e5b-4fde-a4ae-e7d8ff4c872e">
+DeploymentMode="Development" UserJourneyRecorderEndpoint="https://b2crecorder.azurewebsites.net/stream?id=498bd9bb-26a9-4c2f-a449-8287f5639a01">
   <BasePolicy>
     <TenantId>b2ccharm.onmicrosoft.com</TenantId>
     <PolicyId>b2c_1A_base_extensions</PolicyId>
