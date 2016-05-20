@@ -90,21 +90,24 @@ namespace B2CAppMvc
                         }
 
 
-                        // Check to add client auth to request
-                        if (this.clientClaims != null && string.Compare(policy, clientClaims.Policy, true) == 0)
+                        if (context.ProtocolMessage.RequestType != OpenIdConnectRequestType.LogoutRequest)
                         {
-                            List<Claim> claims = new List<Claim>
+                            // Check to add client auth to request
+                            if (this.clientClaims != null && string.Compare(policy, clientClaims.Policy, true) == 0)
                             {
-                                new Claim(clientClaims.ClaimType, clientClaims.ClaimValue),
-                                new Claim("state", context.ProtocolMessage.Parameters["state"])
-                            };
+                                List<Claim> claims = new List<Claim>
+                                {
+                                    new Claim(clientClaims.ClaimType, clientClaims.ClaimValue),
+                                    new Claim("state", context.ProtocolMessage.Parameters["state"])
+                                };
 
-                            OpenIdConnectConfiguration conf = await this.GetConfiguration(context.OwinContext, context.Options);
-                            string jwt = B2COpenidConnect.ClientAuthToken(claims, conf.Issuer, redirectUri, clientSecret);
+                                OpenIdConnectConfiguration conf = await this.GetConfiguration(context.OwinContext, context.Options);
+                                string jwt = ClientAuthToken(claims, conf.Issuer, redirectUri, clientSecret);
 
-                            // Add client auth assertion
-                            context.ProtocolMessage.Parameters.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer");
-                            context.ProtocolMessage.Parameters.Add("client_assertion", jwt);
+                                // Add client auth assertion
+                                context.ProtocolMessage.Parameters.Add("client_assertion_type", "urn:ietf:params:oauth:client-assertion-type:jwt-bearer");
+                                context.ProtocolMessage.Parameters.Add("client_assertion", jwt);
+                            }
                         }
 
                         await Task.FromResult(0);
@@ -128,7 +131,8 @@ namespace B2CAppMvc
                 ClientId = clientId,
                 MetadataAddress = string.Format(metadataUri, tenant, policy),
                 ClientSecret = clientSecret,
-                RedirectUri = redirectUri                 
+                RedirectUri = redirectUri,
+                PostLogoutRedirectUri = redirectUri
             };
         }
 

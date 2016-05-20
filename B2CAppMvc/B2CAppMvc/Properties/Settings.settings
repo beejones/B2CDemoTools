@@ -8,11 +8,11 @@
     <Setting Name="B2CPolicy" Type="System.Collections.Specialized.StringCollection" Scope="Application">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;B2C_1_wingtiptoyssignup&lt;/string&gt;
-  &lt;string&gt;B2C_1_PasswordReset&lt;/string&gt;
-  &lt;string&gt;B2C_1_ProfileEditing&lt;/string&gt;
-  &lt;string&gt;B2C_1A_SignupWithRest&lt;/string&gt;
-  &lt;string&gt;B2C_1A_SignupWithRestAndIdp&lt;/string&gt;
+  &lt;string&gt;b2c_1_wingtiptoyssignup&lt;/string&gt;
+  &lt;string&gt;b2c_1_passwordreset&lt;/string&gt;
+  &lt;string&gt;b2c_1_profileediting&lt;/string&gt;
+  &lt;string&gt;b2c_1a_signupwithrest&lt;/string&gt;
+  &lt;string&gt;b2c_1a_signupwithrestandidp&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="B2CMetadata" Type="System.String" Scope="Application">

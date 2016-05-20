@@ -36,11 +36,11 @@ namespace B2CAppMvc.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>B2C_1_wingtiptoyssignup</string>
-  <string>B2C_1_PasswordReset</string>
-  <string>B2C_1_ProfileEditing</string>
-  <string>B2C_1A_SignupWithRest</string>
-  <string>B2C_1A_SignupWithRestAndIdp</string>
+  <string>b2c_1_wingtiptoyssignup</string>
+  <string>b2c_1_passwordreset</string>
+  <string>b2c_1_profileediting</string>
+  <string>b2c_1a_signupwithrest</string>
+  <string>b2c_1a_signupwithrestandidp</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection B2CPolicy {
             get {
