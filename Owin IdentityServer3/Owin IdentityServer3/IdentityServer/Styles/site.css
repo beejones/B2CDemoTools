@@ -36,6 +36,15 @@ body {
   color: #fff;
 }
 
+.admin body {
+  background-image: none;
+  padding-top: 70px;
+}
+
+.admin .navbar {
+  display: block;
+}
+
 .brand-logo {
   height: 70px;
 }

@@ -1,0 +1,14 @@
+﻿@model IdentityServer.Areas.Admin.ViewModels.CreateClientViewModel
+@{
+    ViewBag.Title = "New Client";
+}
+<h1>New Client</h1>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.TenantName)
+        @Html.TextBoxFor(m => m.TenantName, new { @class = "form-control", maxlength = 100, placeholder = "example.onmicrosoft.com" })
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+}

@@ -1,65 +1,71 @@
 ﻿using Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
-using IdentityServer3.Core.Configuration;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
 using IdentityServer.Config;
+using IdentityServer3.Core.Configuration;
 using Microsoft.Owin.Security.OpenIdConnect;
-using Microsoft.IdentityModel.Protocols;
-using Microsoft.Owin.Security.Google;
 using IdentityServer.Properties;
-using IdentityServer3.Core;
-using System.Security.Claims;
 using IdentityServer3.Core.Services.Default;
-using Thinktecture.IdentityModel.Client;
-using Microsoft.Owin.Security;
+using IdentityServer3.EntityFramework;
 
 namespace IdentityServer
 {
     public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void Configuration(IAppBuilder appBuilder)
         { 
-            app.Map("/identity", idsrvApp =>
+            appBuilder.Map("/identity", identityServerAppBuilder =>
             {
-                var idServerServiceFactory = new IdentityServerServiceFactory()
-                                .UseInMemoryClients(Clients.Get())
-                                .UseInMemoryScopes(Scopes.Get())
-                                .UseInMemoryUsers(Users.Get());
+                var identityServerServiceFactory = new IdentityServerServiceFactory();
 
-                var viewServiceOptions = new DefaultViewServiceOptions();
-                viewServiceOptions.CacheViews = false;
-                viewServiceOptions.Stylesheets.Add("/Styles/site.css");
-                idServerServiceFactory.ConfigureDefaultViewService(viewServiceOptions);
+                var entityFrameworkServiceOptions = new EntityFrameworkServiceOptions
+                {
+                    ConnectionString = ConfigurationManager.ConnectionStrings["CpimIdentityServerDbConnectionString"].ConnectionString
+                };
+
+                identityServerServiceFactory.RegisterClientStore(entityFrameworkServiceOptions);
+                identityServerServiceFactory.UseInMemoryScopes(Scopes.Get());
+                identityServerServiceFactory.UseInMemoryUsers(Users.Get());
+
+                var defaultViewServiceOptions = new DefaultViewServiceOptions
+                {
+                    CacheViews = false
+                };
+
+                defaultViewServiceOptions.Stylesheets.Add("/Styles/site.css");
+                identityServerServiceFactory.ConfigureDefaultViewService(defaultViewServiceOptions);
 
                 var options = new IdentityServerOptions
                 {
-                    Factory = idServerServiceFactory,
-                    SiteName = Settings.Default.SiteName,
-                    IssuerUri = "https://b2cauth.azurewebsites.net/identity",
-                    PublicOrigin = "https://b2cauth.azurewebsites.net",
-                    SigningCertificate = LoadCertificate(),
-                    RequireSsl = false,
-                    AuthenticationOptions = new IdentityServer3.Core.Configuration.AuthenticationOptions
+                    AuthenticationOptions = new AuthenticationOptions
                     {
                         IdentityProviders = ConfigureIdentityProviders
-                    }
+                    },
+                    Factory = identityServerServiceFactory,
+                    IssuerUri = "https://b2cauth.azurewebsites.net/identity",
+                    PublicOrigin = "https://b2cauth.azurewebsites.net",
+                    RequireSsl = false,
+                    SigningCertificate = LoadCertificate(),
+                    SiteName = Settings.Default.SiteName
                 };
 
-                idsrvApp.UseIdentityServer(options);
+                identityServerAppBuilder.UseIdentityServer(options);
+                ConfigureMvc();
             });                      
         }
 
-        public static void ConfigureIdentityProviders(IAppBuilder app, string signInAsType)
+        private static void ConfigureIdentityProviders(IAppBuilder appBuilder, string signInAsType)
         {
             var oidc = new OpenIdConnectAuthenticationOptions
             {
                 Notifications = new OpenIdConnectAuthenticationNotifications()
                 {
-                    RedirectToIdentityProvider = (context) =>
+                    RedirectToIdentityProvider = context =>
                     {
                         // The open id class can't deal with authorization uri which already contain '?'
                         // We need this work around to cover it in the request
@@ -87,14 +93,42 @@ namespace IdentityServer
                 MetadataAddress = string.Format(Settings.Default.B2CMetadata, Settings.Default.B2CTenant, Settings.Default.B2CPolicy),             
                 ClientSecret = @Settings.Default.B2CClientSecret
             };
-            app.UseOpenIdConnectAuthentication(oidc);
+            appBuilder.UseOpenIdConnectAuthentication(oidc);
         }
 
-        X509Certificate2 LoadCertificate()
+        private static void ConfigureMvc()
         {
-            return new X509Certificate2(
-                string.Format(@"{0}\certificates\idsrv3test.pfx",
-                AppDomain.CurrentDomain.BaseDirectory), "idsrv3test");
+            ConfigureMvcAreas();
+            ConfigureMvcBundles(BundleTable.Bundles);
+            ConfigureMvcRoutes(RouteTable.Routes);
+        }
+
+        private static void ConfigureMvcAreas()
+        {
+            AreaRegistration.RegisterAllAreas();
+        }
+
+        private static void ConfigureMvcBundles(BundleCollection bundles)
+        {
+            var styleBundle = new StyleBundle("~/bundles/css").Include("~/Styles/site.css");
+            bundles.Add(styleBundle);
+        }
+
+        private static void ConfigureMvcRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute("Default", "{controller}/{action}/{id}", new
+            {
+                controller = "Home",
+                action = "Index",
+                id = UrlParameter.Optional
+            });
+        }
+
+        private static X509Certificate2 LoadCertificate()
+        {
+            return new X509Certificate2($@"{AppDomain.CurrentDomain.BaseDirectory}\certificates\idsrv3test.pfx", "idsrv3test");
         }
     }
 }
