@@ -172,6 +172,8 @@
     <Content Include="Certificates\idsrv3test.pfx" />
     <Content Include="Areas\Admin\Views\Clients\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Clients\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\B2CAuth %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\B2CAuth %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\B2CAuth.pubxml" />

@@ -68,7 +68,7 @@ namespace IdentityServer.Areas.Admin.Controllers
 
                 _dbContext.Clients.Add(client);
                 await _dbContext.SaveChangesAsync();
-                return RedirectToAction("Index", "Client");
+                return RedirectToAction("Index", "Clients");
             }
 
             return View(viewModel);
