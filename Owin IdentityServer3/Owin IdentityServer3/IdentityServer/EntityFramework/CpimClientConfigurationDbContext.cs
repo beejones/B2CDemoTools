@@ -3,7 +3,7 @@ using IdentityServer3.EntityFramework;
 
 namespace IdentityServer.EntityFramework
 {
-    [DbConfigurationType(typeof(CpimDbConfiguration))]
+    //[DbConfigurationType(typeof(CpimDbConfiguration))]
     public class CpimClientConfigurationDbContext : ClientConfigurationDbContext
     {
         public CpimClientConfigurationDbContext()
