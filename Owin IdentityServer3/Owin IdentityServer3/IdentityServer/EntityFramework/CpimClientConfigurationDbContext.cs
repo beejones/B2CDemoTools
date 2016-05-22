@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿//using System.Data.Entity;
 using IdentityServer3.EntityFramework;
 
 namespace IdentityServer.EntityFramework
