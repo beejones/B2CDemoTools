@@ -182,6 +182,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +201,7 @@
     <Compile Include="Config\Scopes.cs" />
     <Compile Include="Config\Users.cs" />
     <Compile Include="Areas\Admin\Controllers\ClientsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EntityFramework\CpimClientConfigurationDbContext.cs" />
     <Compile Include="EntityFramework\CpimDbConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
