@@ -1,4 +1,13 @@
-﻿<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="b2ccharm.onmicrosoft.com" PolicyId="B2C_1A_base" PublicPolicyUri="http://lamnahealth.onmicrosoft.com">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrustFrameworkPolicy 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
+  PolicySchemaVersion="0.3.0.0" 
+  TenantId="lamnahealth.onmicrosoft.com" 
+  PolicyId="B2C_1A_base" 
+  PublicPolicyUri="http://lamnahealth.onmicrosoft.com">
+  
   <BuildingBlocks>
     <ClaimsSchema>
 	  <!-- This section is divided into three sections:
@@ -317,12 +326,13 @@
         <UserHelpText>Your surname (also known as family name or last name).</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
-	  
-	   <ClaimType Id="extension_picture">
+	  	  
+	  <ClaimType Id="extension_picture">
         <DisplayName>extension_picture</DisplayName>
         <DataType>string</DataType>
         <UserHelpText>Picture from social.</UserHelpText>
       </ClaimType>
+
     </ClaimsSchema>
 	
     <ClaimsTransformations>
@@ -513,7 +523,7 @@
             <Item Key="ClaimsEndpoint">https://graph.facebook.com/me?fields=id,first_name,last_name,name,email,picture</Item>
             <Item Key="scope">email</Item>
             <Item Key="HttpBinding">GET</Item>
-            <Item Key="client_id">1819635094926225</Item>
+            <Item Key="client_id">222912088063716</Item>
             <Item Key="UsePolicyInRedirectUri">0</Item>
           </Metadata>
           <CryptographicKeys>
@@ -661,12 +671,25 @@
     <ClaimsProvider>
       <DisplayName>Azure Active Directory</DisplayName>
       <TechnicalProfiles>
+
+	    <TechnicalProfile Id="AAD-Common">
+          <DisplayName>Azure Active Directory</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+
+          <!-- Uncomment the Metadata section and provide objectId and appId before using extension properties. -->
+          <!--Metadata>
+            <Item Key="ApplicationObjectId">(insert objectId here)</Item>
+            <Item Key="ClientId">(insert appId here)</Item>
+          </Metadata-->
+
+          <CryptographicKeys>
+            <Key Id="issuer_secret" StorageReferenceId="TokenSigningKeyContainer" />
+          </CryptographicKeys>
+		  </TechnicalProfile>
 	  
 		<!-- Technical profiles for social logins -->
 		
         <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">true</Item>
@@ -699,14 +722,12 @@
             <!-- The following other mails claim is needed for the case when a user is created, we get otherMails from directory. Self-asserted provider also has an
                  OutputClaims, and if this is absent, Self-Asserted provider will prompt the user for otherMails. -->
             <OutputClaim ClaimTypeReferenceId="otherMails" />
-			<OutputClaim ClaimTypeReferenceId="extension_picture" />          
-		</OutputClaims>
+          </OutputClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
 
 		<TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Read</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
@@ -727,6 +748,7 @@
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
           </OutputClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 
         <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId-NoError">
@@ -739,8 +761,6 @@
         <!-- Technical profiles for local accounts --> 		
 		
         <TechnicalProfile Id="AAD-UserWriteUsingLogonEmail">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">true</Item>
@@ -771,12 +791,11 @@
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromObjectID" />
           </OutputClaimsTransformations>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
 
         <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Read</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
@@ -801,13 +820,12 @@
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromObjectID" />
           </OutputClaimsTransformations>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 
 		<!-- Technical profiles for updating user record using objectId -->
 		
         <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">false</Item>
@@ -828,11 +846,10 @@
             <PersistedClaim ClaimTypeReferenceId="givenName" />
             <PersistedClaim ClaimTypeReferenceId="surname" />
           </PersistedClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
         
         <TechnicalProfile Id="AAD-UserWritePhoneNumberUsingObjectId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">false</Item>
@@ -846,11 +863,10 @@
             <PersistedClaim ClaimTypeReferenceId="objectId" />
             <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
           </PersistedClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 
         <TechnicalProfile Id="AAD-UserWritePasswordUsingObjectId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Write</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
@@ -866,12 +882,11 @@
             <!-- If the user stepped up during password reset, their phone number should be persisted for future authentication requests. -->
             <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
           </PersistedClaims>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 
         <!-- The following technical profile is used to read data after user authenticates. -->
         <TechnicalProfile Id="AAD-UserReadUsingObjectId">
-          <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="Operation">Read</Item>
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
@@ -895,6 +910,7 @@
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromObjectID" />
           </OutputClaimsTransformations>
+          <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
 
       </TechnicalProfiles>
@@ -924,7 +940,6 @@
                  in AAD-UserWriteUsingAlternativeSecurityId. -->
             <OutputClaim ClaimTypeReferenceId="givenName" />
             <OutputClaim ClaimTypeReferenceId="surname" />
-			<OutputClaim ClaimTypeReferenceId="extension_picture" />
           </OutputClaims>
           <ValidationTechnicalProfiles>
             <ValidationTechnicalProfile ReferenceId="AAD-UserWriteUsingAlternativeSecurityId" />
@@ -942,7 +957,12 @@
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="alternativeSecurityId" />
             <InputClaim ClaimTypeReferenceId="userPrincipalName" />
-          </InputClaims>
+
+            <!-- Optional claims. These claims are collected from the user and can be modified. Any claim added here should be updated in the
+                 ValidationTechnicalProfile referenced below so it can be written to directory after being updateed by the user, i.e. AAD-UserWriteProfileUsingObjectId. -->
+            <InputClaim ClaimTypeReferenceId="givenName" />
+            <InputClaim ClaimTypeReferenceId="surname" />
+		  </InputClaims>
           <OutputClaims>
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
@@ -1075,7 +1095,7 @@
     <ClaimsProvider>
       <DisplayName>Session Management</DisplayName>
       <TechnicalProfiles>
-  	    <TechnicalProfile Id="SM-Noop">
+        <TechnicalProfile Id="SM-Noop">
           <DisplayName>Noop Session Management Provider</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.NoopSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
         </TechnicalProfile>
@@ -1163,7 +1183,6 @@
 
   <UserJourneys>
     <UserJourney Id="SignUp">
-      <AssuranceLevel>LOA1</AssuranceLevel>
       <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
       <OrchestrationSteps>
         <OrchestrationStep Order="1" Type="ClaimsProviderSelection" ContentDefinitionReferenceId="api.idpselections.signup">
@@ -1185,9 +1204,10 @@
              user account when the user clicks "continue" button.
              If no attributes should be collected from the user, then remove/comment this step, but uncomment the other step 3 below so the
              user is created in the directory. -->
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+
+		<!-- The precondition in this step makes sure that this page is only shown for social logins, and not if user created a local account. -->
+		<OrchestrationStep Order="3" Type="ClaimsExchange">
           <Preconditions>
-            <!-- The following precondition makes sure that this page is only shown for social logins, and not if user created a local account. -->
             <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
               <Value>authenticationSource</Value>
               <Value>localAccountAuthentication</Value>
@@ -1245,7 +1265,7 @@
           </ClaimsExchanges>
         </OrchestrationStep>
 
-        <!-- If MFA is not require, this step shouold be removed. 
+        <!-- If MFA is not required, this step shouold be removed. 
              This step writes the phone number that the user provided in the directory for user in future authentication requests. -->
         <OrchestrationStep Order="6" Type="ClaimsExchange">
           <ClaimsExchanges>
@@ -1259,7 +1279,6 @@
     </UserJourney>
 
     <UserJourney Id="SignIn">
-      <AssuranceLevel>LOA1</AssuranceLevel>
       <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
       <OrchestrationSteps>
 
@@ -1362,7 +1381,6 @@
     </UserJourney>
 
     <UserJourney Id="SignUpOrSignIn">
-      <AssuranceLevel>LOA1</AssuranceLevel>
       <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
       <OrchestrationSteps>
         <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
@@ -1512,7 +1530,6 @@
     </UserJourney>
 
     <UserJourney Id="EditProfile">
-      <AssuranceLevel>LOA1</AssuranceLevel>
       <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
       <OrchestrationSteps>
         <OrchestrationStep Order="1" Type="ClaimsProviderSelection" ContentDefinitionReferenceId="api.idpselections">
@@ -1577,7 +1594,6 @@
     </UserJourney>
 
     <UserJourney Id="PasswordReset">
-      <AssuranceLevel>LOA1</AssuranceLevel>
       <PreserveOriginalAssertion>false</PreserveOriginalAssertion>
       <OrchestrationSteps>
         <OrchestrationStep Order="1" Type="ClaimsExchange">
@@ -1601,3 +1617,8 @@
     </UserJourney>
   </UserJourneys>
 </TrustFrameworkPolicy>
+
+
+
+
+
