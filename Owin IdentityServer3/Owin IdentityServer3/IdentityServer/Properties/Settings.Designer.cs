@@ -95,5 +95,14 @@ namespace IdentityServer.Properties {
                 return ((string)(this["IdentityServerRedirectUri"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://b2cauth.azurewebsites.net/")]
+        public string Origin {
+            get {
+                return ((string)(this["Origin"]));
+            }
+        }
     }
 }

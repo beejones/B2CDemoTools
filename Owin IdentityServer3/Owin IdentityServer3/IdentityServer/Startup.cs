@@ -47,8 +47,8 @@ namespace IdentityServer
                         IdentityProviders = ConfigureIdentityProviders
                     },
                     Factory = identityServerServiceFactory,
-                    IssuerUri = "https://b2cauth.azurewebsites.net/identity",
-                    PublicOrigin = "https://b2cauth.azurewebsites.net",
+                    IssuerUri = Settings.Default.IdentityServerRedirectUri,
+                    PublicOrigin = Settings.Default.Origin,
                     RequireSsl = false,
                     SigningCertificate = LoadCertificate(),
                     SiteName = Settings.Default.SiteName
