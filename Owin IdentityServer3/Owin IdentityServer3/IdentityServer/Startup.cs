@@ -12,6 +12,8 @@ using Microsoft.Owin.Security.OpenIdConnect;
 using IdentityServer.Properties;
 using IdentityServer3.Core.Services.Default;
 using IdentityServer3.EntityFramework;
+using CustomUserStore;
+using IdentityServer3.Core.Services;
 
 namespace IdentityServer
 {
@@ -32,6 +34,10 @@ namespace IdentityServer
                 identityServerServiceFactory.UseInMemoryScopes(Scopes.Get());
                 identityServerServiceFactory.UseInMemoryUsers(Users.Get());
 
+                // Add custom user service
+                //var userService = new UserService();
+                //identityServerServiceFactory.UserService = new Registration<IUserService>(resolver => userService);
+
                 var defaultViewServiceOptions = new DefaultViewServiceOptions
                 {
                     CacheViews = false
@@ -42,6 +48,10 @@ namespace IdentityServer
 
                 var options = new IdentityServerOptions
                 {
+                    LoggingOptions = new LoggingOptions()
+                    {
+                         WebApiDiagnosticsIsVerbose = true
+                    }, 
                     AuthenticationOptions = new AuthenticationOptions
                     {
                         IdentityProviders = ConfigureIdentityProviders
