@@ -35,8 +35,8 @@ namespace IdentityServer
                 identityServerServiceFactory.UseInMemoryUsers(Users.Get());
 
                 // Add custom user service
-                //var userService = new UserService();
-                //identityServerServiceFactory.UserService = new Registration<IUserService>(resolver => userService);
+                var userService = new UserService();
+                identityServerServiceFactory.UserService = new Registration<IUserService>(resolver => userService);
 
                 var defaultViewServiceOptions = new DefaultViewServiceOptions
                 {
