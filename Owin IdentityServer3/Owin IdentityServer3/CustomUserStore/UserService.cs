@@ -42,7 +42,7 @@ namespace CustomUserStore
             List<Claim> claims = subject.Claims.ToList();
 
             // Just add a claim for testing
-            claims.Add(new Claim("justfortest", "testvalue"));
+            //claims.Add(new Claim("justfortest", "testvalue"));
 
             context.IssuedClaims = claims;
             return Task.FromResult(0);
