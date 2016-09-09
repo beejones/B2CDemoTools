@@ -22,7 +22,21 @@ namespace CustomUserStore
         public override Task AuthenticateExternalAsync(ExternalAuthenticationContext context)
         {
             var externalAuth = context.ExternalIdentity;
-            var auth = new AuthenticateResult(externalAuth.ProviderId, "ronny", externalAuth.Claims, externalAuth.Provider);
+
+            // name needs to be present as claim type
+            string nameClaim = string.Empty;
+            var name = externalAuth.Claims.FirstOrDefault(c => string.Compare(c.Type, "name", true) == 0);
+            if (name == null)
+            {
+                // Some dummy value
+                nameClaim = "ronny";
+            }
+            else
+            {
+                nameClaim = name.Value;
+            }
+
+            var auth = new AuthenticateResult(externalAuth.ProviderId, nameClaim, externalAuth.Claims, externalAuth.Provider);
             context.AuthenticateResult = auth;
             return Task.FromResult(0);
         }
@@ -42,7 +56,7 @@ namespace CustomUserStore
             List<Claim> claims = subject.Claims.ToList();
 
             // Just add a claim for testing
-            claims.Add(new Claim("justfortest", "testvalue"));
+            //claims.Add(new Claim("justfortest", "testvalue"));
 
             context.IssuedClaims = claims;
             return Task.FromResult(0);
