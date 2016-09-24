@@ -570,8 +570,8 @@
             <Item Key="scope">email openid</Item>
 
             <!-- First party App client Id-->
-            <Item Key="client_id">1d2e42b6-7685-4d2c-82c2-7318fce0d740</Item>
-            <Item Key="IdTokenAudience">bb2a2e3a-c5e7-4f0a-88e0-8e01fd3fc1f4</Item>
+            <Item Key="client_id">(insert client_id here)</Item>
+            <Item Key="IdTokenAudience">(insert appId of the audience here)</Item>
             <Item Key="UsePolicyInRedirectUri">false</Item>
             <Item Key="HttpBinding">POST</Item>
             <Item Key="LocalAccountProfile">true</Item>
