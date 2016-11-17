@@ -44,7 +44,7 @@
 					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
 					<!--<InputTokenFormat>JWT</InputTokenFormat>-->
 					<Metadata>
-						<Item Key="userinfo_endpoint">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
+						<Item Key="ServiceUrl">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
 						<Item Key="AuthenticationType">Basic</Item>
 						<Item Key="SendClaimsIn">Body</Item>
 						<Item Key="issuer">http://b2cauthapi.azurewebsites.net/</Item>
@@ -66,7 +66,7 @@
 					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
 					<!--<InputTokenFormat>JWT</InputTokenFormat>-->
 					<Metadata>
-						<Item Key="userinfo_endpoint">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
+						<Item Key="ServiceUrl">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
 						<Item Key="AuthenticationType">Basic</Item>
 						<Item Key="SendClaimsIn">Header</Item>
 						<Item Key="issuer">http://b2cauthapi.azurewebsites.net/</Item>
@@ -88,7 +88,7 @@
 					<Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
 					<!--<InputTokenFormat>JWT</InputTokenFormat>-->
 					<Metadata>
-						<Item Key="userinfo_endpoint">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
+						<Item Key="ServiceUrl">http://b2cauthapi.azurewebsites.net/api/loyalty</Item>
 						<Item Key="AuthenticationType">Basic</Item>
 						<Item Key="SendClaimsIn">Form</Item>
 						<Item Key="issuer">http://b2cauthapi.azurewebsites.net/</Item>

@@ -685,7 +685,11 @@
           <CryptographicKeys>
             <Key Id="issuer_secret" StorageReferenceId="TokenSigningKeyContainer" />
           </CryptographicKeys>
-		  </TechnicalProfile>
+		  
+		  <!-- We need this here to suppress the SelfAsserted provider from invoking SSO on validation profiles. -->
+          <IncludeInSso>false</IncludeInSso>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+		</TechnicalProfile>
 	  
 		<!-- Technical profiles for social logins -->
 		
