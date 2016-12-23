@@ -7,19 +7,6 @@ DeploymentMode="Development" UserJourneyRecorderEndpoint="https://b2crecorder.az
   <RelyingParty>
     <DefaultUserJourney ReferenceId="SignUpOrSignInWithRestAndIdp" />
     <TechnicalProfile Id="PolicyProfile">
-      <DisplayName>PolicyProfile</DisplayName>
-      <Protocol Name="OpenIdConnect" />
-      <OutputClaims>
-        <OutputClaim ClaimTypeReferenceId="objectId" />
-        <OutputClaim ClaimTypeReferenceId="displayName" />
-        <OutputClaim ClaimTypeReferenceId="givenName" />
-        <OutputClaim ClaimTypeReferenceId="surname" />
-        <OutputClaim ClaimTypeReferenceId="email" />
-        <OutputClaim ClaimTypeReferenceId="sub" />
-        <OutputClaim ClaimTypeReferenceId="identityProvider" />
-        <OutputClaim ClaimTypeReferenceId="Loyalty" />
-		<OutputClaim ClaimTypeReferenceId="extension_picture" />
-      </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>
   </RelyingParty>
