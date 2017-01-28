@@ -569,9 +569,9 @@
             <Item Key="response_mode">query</Item>
             <Item Key="scope">email openid</Item>
 
-            <!-- First party App client Id-->
-            <Item Key="client_id">(insert client_id here)</Item>
-            <Item Key="IdTokenAudience">(insert appId of the audience here)</Item>
+            <!-- Policy Engine Clients -->
+            <Item Key="client_id">(insert client_id of native client here)</Item>
+            <Item Key="IdTokenAudience">(insert client_id of web app here)</Item>
             <Item Key="UsePolicyInRedirectUri">false</Item>
             <Item Key="HttpBinding">POST</Item>
             <Item Key="LocalAccountProfile">true</Item>
@@ -582,8 +582,8 @@
             <InputClaim ClaimTypeReferenceId="grant_type" DefaultValue="password" />
             <InputClaim ClaimTypeReferenceId="scope" DefaultValue="openid" />
             <InputClaim ClaimTypeReferenceId="nca" PartnerClaimType="nca" DefaultValue="1" />
-            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="1d2e42b6-7685-4d2c-82c2-7318fce0d740" />
-            <InputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="resource" DefaultValue="bb2a2e3a-c5e7-4f0a-88e0-8e01fd3fc1f4" />
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="(insert client_id of native client here)" />
+            <InputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="resource" DefaultValue="(insert client_id of web app here)" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="oid" />
