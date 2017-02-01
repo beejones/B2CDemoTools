@@ -41,7 +41,7 @@ $tenantName = $tenantDetails.VerifiedDomains | Where Initial -eq "True" | Select
 $aadSpResponse = Invoke-WebRequest "https://graph.windows.net/$tenantId/servicePrincipals?`$filter=appId+eq+'00000002-0000-0000-c000-000000000000'&api-version=1.6" -Method Get -Headers @{Authorization="Bearer $accessToken"}
 $aadSp = (ConvertFrom-Json $aadSpResponse.Content).value[0]
 $aadSpOid = $aadSp.objectId
-$aadPermissionId = $aadApp.oauth2Permissions | where value -eq 'User.Read' | Select -First 1 -ExpandProperty Id
+$aadPermissionId = $aadSp.oauth2Permissions | where value -eq 'User.Read' | Select -First 1 -ExpandProperty Id
 
 
 #----------- Web App ------------
