@@ -1,7 +1,7 @@
 ﻿# This PS1 script will create the required applications for B2C Advanced
 # Supply the location of your base policy so that the script updates the necessary values.
 Param(
-    [switch]$BasePolicyPath = ""
+    $BasePolicyPath = ""
 )
 
 
