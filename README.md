@@ -1,5 +1,5 @@
 # B2C Training tools
 
-The content in this repo is used for an Azure Active Directory B2C training. 
+The content in this repo has moved! 
 
-Demo is deployed at http://b2cappmvc.azurewebsites.net
+Check out it's now home @ https://github.com/Azure-Samples/active-directory-b2c-advanced-policies
